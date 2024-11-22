@@ -89,7 +89,7 @@ def compara_assinatura(as_a, as_b):
     as2  = as_b
     dift = 0 
     
-    for i in range (len (as1)):
+    for i in range (6):
         dif = abs (as1[i] - as2[i])
         dift += dif
 
@@ -228,12 +228,13 @@ def avalia_textos(textos, ass_cp):
     infectado por COH-PIAH.'''
     
     simi = 0
-    suspeitos = le_textos (textos)
+    suspeitos = textos
+    comparados = []
 
     for texto in suspeitos:
         as_t = calcula_assinatura (texto)
-        simi = [compara_assinatura (as_t, ass_cp)]
-    
-    maior_prob = min (simi)
-    return simi [maior_prob]
-        
+        simi = compara_assinatura (as_t, ass_cp)
+        comparados.append (simi)
+    maior_prob = min (comparados)
+            
+    return comparados.index (maior_prob) + 1
